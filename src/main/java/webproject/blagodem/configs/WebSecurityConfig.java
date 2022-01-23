@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/blagodem/login")
                 .loginProcessingUrl("/blagodem/login-process")
-                .defaultSuccessUrl("/blagodem/main")
+                .defaultSuccessUrl("/blagodem/main", true)
                 .permitAll()
                 .and()
                 .logout().permitAll()

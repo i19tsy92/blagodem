@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import webproject.blagodem.entities.Application;
 import webproject.blagodem.entities.Disabled;
+import webproject.blagodem.entities.User;
 import webproject.blagodem.entities.Volunteer;
-import webproject.blagodem.repo.ApplicationRepo;
-import webproject.blagodem.repo.DisabledRepo;
-import webproject.blagodem.repo.RequestRepo;
-import webproject.blagodem.repo.VolunteerRepo;
+import webproject.blagodem.repo.*;
 
 import java.security.Principal;
 
@@ -27,6 +25,9 @@ public class MainController {
     private VolunteerRepo volunteerRepo;
 
     @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
     private ApplicationRepo applicationRepo;
 
     @Autowired
@@ -37,11 +38,15 @@ public class MainController {
         String email = principal.getName();
         Disabled disabled = disabledRepo.findByEmail(email);
         Volunteer volunteer = volunteerRepo.findByEmail(email);
-        if(disabled != null) {
-            model.addAttribute("user", disabled);
-        }
-        if(volunteer != null) {
-            model.addAttribute("user", volunteer);
+        User user = userRepo.findByEmail(email);
+//        if(disabled != null) {
+//            model.addAttribute("user", disabled);
+//        }
+//        if(volunteer != null) {
+//            model.addAttribute("user", volunteer);
+//        }
+        if (user != null) {
+            model.addAttribute("user", user);
         }
         return "main";
     }
