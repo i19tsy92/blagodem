@@ -11,7 +11,7 @@
 <div th:if="${param.logout}">
     Вы вышли из профиля.
 </div>
-<form th:action="@{/blagodem/login}" method="post">
+<form th:action="@{/blagodem/login-process}" method="post">
     <div><label> Email : <input type="text" name="username"/> </label></div>
     <div><label> Пароль: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="Войти"/></div>

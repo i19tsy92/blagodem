@@ -20,24 +20,9 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping()
+    @GetMapping
     public String showLogin(){
         return "login";
-    }
-
-    @PostMapping()
-    public String postLogin(String username, String password, Map<String, Object> model){
-        User user = userRepo.findByEmail(username);
-        if (user == null){
-            model.put("message", "Такого пользователя не существует");
-            return showLogin();
-        }
-        String encoded = passwordEncoder.encode(password);
-        if (!encoded.equals(user.getPassword())){
-            model.put("message", "Неверный пароль");
-            return showLogin();
-        }
-        return "redirect:/blagodem/main";
     }
 }
 
